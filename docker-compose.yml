@@ -1,0 +1,20 @@
+version: "3"
+services:
+  deep-text-benchmark:
+    container_name: deep-text-benchmark
+    build:
+      context: ""
+      dockerfile: ./Dockerfile
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+    volumes:
+      - ./deep-text-recognition:/home/deep-text-recognition
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 50000
+        hard: 100000
+    privileged: true
